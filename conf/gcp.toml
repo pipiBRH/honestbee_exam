@@ -1,0 +1,5 @@
+[ElasticSearch]
+    host = "es-elasticsearch-client"
+    port = 9200
+    index = "goods"
+    type = "_doc"
