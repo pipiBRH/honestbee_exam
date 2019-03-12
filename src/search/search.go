@@ -10,10 +10,9 @@ import (
 	"github.com/golang/glog"
 )
 
-func EsQuery(keyWord string) (*QueryData, error) {
+func EsQuery(keyWord string) ([]HitList, error) {
 	url := schema.Config.ElasticSearch.GetURL()
-
-	dsl := query{match{matchDsl{keyWord}}}
+	dsl := query{Query: match{matchDsl{keyWord}}, From: 0, Size: 1}
 	dslJsonEncode, _ := json.Marshal(dsl)
 	payload := strings.NewReader(string(dslJsonEncode))
 	req, _ := http.NewRequest("GET", url, payload)
@@ -34,5 +33,5 @@ func EsQuery(keyWord string) (*QueryData, error) {
 		glog.Errorf("EsQuery set level error => %+v\n  KW => %+v", err, keyWord)
 		return nil, err
 	}
-	return result, nil
+	return result.Hits.HitList, nil
 }

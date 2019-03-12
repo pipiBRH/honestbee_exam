@@ -1,12 +1,10 @@
-all: clean build rmlog
+all: clean build
 
 clean:
-	go clean src/main.go
+	go clean
+download:
+	go mod download	
 build: 
-	go build  -o honestbee src/main.go
-
-rmlog:
-	rm ./log/*
-
-linux: clean rmlog
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o linux_amazon_spider	
+	go build  -o ./bin/main
+linux: clean download
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./bin/main

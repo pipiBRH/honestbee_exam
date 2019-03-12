@@ -8,6 +8,19 @@ var Config Conf
 
 type Conf struct {
 	ElasticSearch ElasticSearchConf
+	Server        ServerConf
+}
+
+type ServerConf struct {
+	bind string
+	Port int
+}
+
+func (this ServerConf) GetBind() string {
+	return fmt.Sprintf(
+		"%v:%v",
+		this.bind,
+		this.Port)
 }
 
 type ElasticSearchConf struct {

@@ -2,6 +2,8 @@ package search
 
 type query struct {
 	Query match `json:"query"`
+	From  int   `json:"from"`
+	Size  int   `json:"size"`
 }
 
 type match struct {
@@ -22,7 +24,7 @@ type QueryData struct {
 type hit struct {
 	Total    int       `json:"total"`
 	MaxScore float32   `json:"max_score"`
-	HitList  []hitList `json:"hits"`
+	HitList  []HitList `json:"hits"`
 }
 
 type shard struct {
@@ -32,7 +34,7 @@ type shard struct {
 	Failed     int `json:"failed"`
 }
 
-type hitList struct {
+type HitList struct {
 	Index  string  `json:"_index"`
 	Type   string  `json:"_type"`
 	ID     string  `json:"_id"`
