@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: honestbee-service
+  labels:
+    app: honestbee
+  annotations:
+    # service.alpha.kubernetes.io/app-protocols: '{"http":"HTTPS", "http":"HTTP2"}'
+    # cloud.google.com/neg: '{"ingress":true}'
+    beta.cloud.google.com/backend-config: '{"ports": {"80":"honestbee-backendconfig"}}'
+spec:
+  ports:
+    - port: 80
+      targetPort: ws-port
+      protocol: TCP
+      name: ws-service-port
+  selector:
+    app: honestbee
+  type: NodePort

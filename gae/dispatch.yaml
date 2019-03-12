@@ -1,0 +1,5 @@
+dispatch:
+  - url: "www.hoyoyo.xyz/"
+    service: default
+  - url: "hoyoyo.xyz/"
+    service: default
