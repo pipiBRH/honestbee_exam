@@ -43,7 +43,7 @@
                         let div = $("<div/>").attr("style",
                             "border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;")
                         $("<div/>").text(`${data.sender}:`).appendTo(div)
-                        $("<a/>").attr('href', `${data.goods[0]._source.url}`).text(
+                        $("<a/>").attr('href', `${data.goods[0]._source.url}`).attr('target', `_blank`).text(
                             `${data.goods[0]._source.pname}`).appendTo(div)
                         $("<div/>").text(`$${data.goods[0]._source.price}`).appendTo(div)
                         $("<br>").appendTo(div)
